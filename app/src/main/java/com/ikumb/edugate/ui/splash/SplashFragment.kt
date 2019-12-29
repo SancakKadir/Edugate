@@ -1,11 +1,12 @@
 package com.ikumb.edugate.ui.splash
 
-import com.ikumb.edugate.di.Injectable
 import com.ikumb.edugate.R
 import com.ikumb.edugate.core.BaseFragment
 import com.ikumb.edugate.databinding.FragmentSplashBinding
+import com.ikumb.edugate.di.Injectable
 
-class SplashFragment : BaseFragment<SplashFragmentViewModel, FragmentSplashBinding>(SplashFragmentViewModel::class.java),
+class SplashFragment :
+    BaseFragment<SplashFragmentViewModel, FragmentSplashBinding>(SplashFragmentViewModel::class.java),
     Injectable {
     override fun getLayoutRes(): Int = R.layout.fragment_splash
 
@@ -13,7 +14,4 @@ class SplashFragment : BaseFragment<SplashFragmentViewModel, FragmentSplashBindi
         mBinding.viewModel = viewModel
     }
 
-    override fun init() {
-        super.init()
-    }
 }

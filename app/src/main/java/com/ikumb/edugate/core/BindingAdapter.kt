@@ -5,7 +5,6 @@ import androidx.databinding.BindingAdapter
 import com.ikumb.edugate.utils.domain.hide
 import com.ikumb.edugate.utils.domain.show
 
-
 @BindingAdapter("app:visibility")
 fun setVisibilty(view: View, isVisible: Boolean) {
     if (isVisible) {

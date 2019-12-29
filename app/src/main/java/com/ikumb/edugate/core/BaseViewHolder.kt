@@ -1,6 +1,5 @@
 package com.ikumb.edugate.core
 
-
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
