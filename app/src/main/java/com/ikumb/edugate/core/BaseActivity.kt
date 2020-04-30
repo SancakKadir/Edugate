@@ -1,11 +1,16 @@
 package com.ikumb.edugate.core
 
+import android.app.Dialog
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.firebase.auth.FirebaseAuth
+import com.ikumb.edugate.utils.domain.toast
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -18,6 +23,11 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private va
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
+
+    lateinit var mAuth: FirebaseAuth
+    var dialog: Dialog? = null
+
+
 
     val binding by lazy {
         DataBindingUtil.setContentView(this, getLayoutRes()) as DB
@@ -39,6 +49,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private va
         initViewModel(viewModel)
         onInject()
         setupBindingLifecycleOwner()
+        initFirebase()
+        initToast()
     }
 
     /**
@@ -53,4 +65,39 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private va
     private fun setupBindingLifecycleOwner() {
         binding.lifecycleOwner = this
     }
+
+    fun initFirebase() {
+        mAuth = FirebaseAuth.getInstance()
+    }
+
+    fun hideProgress() {
+        runOnUiThread {
+            dialog?.dismiss()
+        }
+    }
+
+    fun showProgress() {
+        runOnUiThread {
+            dialog?.show()
+        }
+    }
+
+    fun isShow(): Boolean? {
+        return dialog?.isShowing
+    }
+
+    fun initToast() {
+        if (viewModel.toastLiveData.hasActiveObservers())
+            viewModel.toastLiveData.removeObservers(this)
+
+        viewModel.toastLiveData.observe(
+            this,
+            Observer<String> {
+                toast(it, Toast.LENGTH_LONG)
+            }
+        )
+    }
+
+
+
 }

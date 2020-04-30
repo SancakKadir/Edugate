@@ -14,5 +14,12 @@
         <action
             android:id="@+id/action_splashFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.ikumb.edugate.ui.dashboard.BlankFragment"
+        android:label="BlankFragment" />
 </navigation>

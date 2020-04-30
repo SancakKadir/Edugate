@@ -13,10 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import dagger.android.AndroidInjection
 
-/**
- * Created by Furkan on 2019-10-16
- */
-
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : Fragment() {
 
     lateinit var viewModel: VM

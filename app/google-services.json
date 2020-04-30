@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "757123336157",
+    "firebase_url": "https://edugate-fbfae.firebaseio.com",
+    "project_id": "edugate-fbfae",
+    "storage_bucket": "edugate-fbfae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757123336157:android:9a12102d0a4069f1c31834",
+        "android_client_info": {
+          "package_name": "com.ikumb.edugate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757123336157-vis3mrbl01nek0tic7ighpdrqj3eadvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfoS3AQHWBxpFaeBLGkeReWxBi1m0wKuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757123336157-vis3mrbl01nek0tic7ighpdrqj3eadvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

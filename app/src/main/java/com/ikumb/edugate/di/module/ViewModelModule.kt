@@ -3,17 +3,17 @@ package com.ikumb.edugate.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.faskn.app.weatherapp.di.ViewModelFactory
-import com.faskn.app.weatherapp.di.key.ViewModelKey
+import com.ikumb.edugate.di.key.ViewModelKey
+import com.ikumb.edugate.ui.after_register.AfterRegisterViewModel
+import com.ikumb.edugate.ui.dashboard.BlankViewModel
 import com.ikumb.edugate.ui.dashboard.DashboardFragmentViewModel
+import com.ikumb.edugate.ui.entry.EntryViewModel
+import com.ikumb.edugate.ui.loginregister.LoginViewModel
 import com.ikumb.edugate.ui.main.MainActivityViewModel
 import com.ikumb.edugate.ui.splash.SplashFragmentViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-
-/**
- * Created by Furkan on 2019-10-16
- */
 
 @Module
 abstract class ViewModelModule {
@@ -35,4 +35,30 @@ abstract class ViewModelModule {
     @Binds
     @ViewModelKey(DashboardFragmentViewModel::class)
     abstract fun provideDashboardFragmentViewModel(dashboardFragmentViewModel: DashboardFragmentViewModel): ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(BlankViewModel::class)
+    abstract fun provideBlankViewModel(blankViewModel: BlankViewModel): ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun provideLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(EntryViewModel::class)
+    abstract fun provideEntryViewModel(entryViewModel: EntryViewModel): ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(AfterRegisterViewModel::class)
+    abstract fun providerAfterRegisterViewModel(afterRegisterViewModel: AfterRegisterViewModel): ViewModel
+
+
+
+
+
+
 }

@@ -10,20 +10,23 @@ import androidx.navigation.ui.setupWithNavController
 import com.ikumb.edugate.R
 import com.ikumb.edugate.core.BaseActivity
 import com.ikumb.edugate.databinding.ActivityMainBinding
+import com.ikumb.edugate.utils.domain.hide
+import com.ikumb.edugate.utils.domain.show
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity :
     BaseActivity<MainActivityViewModel, ActivityMainBinding>(MainActivityViewModel::class.java),
-    HasSupportFragmentInjector {
+    HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     override fun initViewModel(viewModel: MainActivityViewModel) {
         binding.viewModel = viewModel
@@ -46,6 +49,16 @@ class MainActivity :
                 else -> NavigationUI.onNavDestinationSelected(it, navController)
             }
         }
+
+        findNavController(R.id.container_fragment).addOnDestinationChangedListener { controller
+                                                                                     , destination
+                                                                                     , arguments ->
+            when (controller.currentDestination?.id) {
+                R.id.splashFragment -> binding.bottomNavigation.show()
+                else -> binding.bottomNavigation.show()
+            }
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -55,5 +68,6 @@ class MainActivity :
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onSupportNavigateUp(): Boolean = findNavController(R.id.container_fragment).navigateUp()
+    override fun onSupportNavigateUp(): Boolean =
+        findNavController(R.id.container_fragment).navigateUp()
 }

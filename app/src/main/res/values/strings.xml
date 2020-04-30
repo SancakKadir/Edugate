@@ -1,7 +1,100 @@
 <resources>
     <string name="app_name">Edugate</string>
     <string name="position" translatable="false">position</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title">Title</string>
+    <string name="hello">Merhaba!</string>
+    <string name="sign_in">Giriş Yap</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="email">E-posta Adresiniz</string>
+    <string name="password">Parolanız</string>
+    <string name="already_register">Henüz üye değil misiniz?</string>
+    <string name="already_have_account">Hesabınız var mı?</string>
+    <string name="agreement">Üye olurken Kullanım Şartlarını ve Sözleşmesi’ni kabul ediyorum.</string>
+    <string name="agreement_part_first">Kullanım</string>
+    <string name="agreement_part_second"> Şartlarını </string>
+    <string name="agreement_part_third"> ve </string>
+    <string name="agreement_part_fourth">Sözleşmesi’ni </string>
+    <string name="agreement_message">\"Adıma yapılacak herhangi bir işlemden google play sorumludur.\" :)</string>
+    <string name="forget_password">Şifremi Unuttum</string>
+    <string name="mail_delay">*Parola sıfırlama mailinin gelmesi biraz süre alabilir.</string>
+    <string name="reset_password">Parolayı Sıfırla</string>
+    <string name="reset_password_dialog">Parola sıfırlama maili gönderildi.</string>
+    <string name="register_success_dialog">Hesabınız oluşturuldu! Lütfen mail gelen kutunuzu kontrol ediniz.</string>
+    <string name="home">Anasayfa</string>
+    <string name="search">Ara</string>
+    <string name="bookcase">Kitaplık</string>
+    <string name="profile">Profil</string>
+    <string name="know_you_closely">Seni yakından tanıyalım!</string>
+    <string name="surname">Soyadınız</string>
+    <string name="name">Adınız</string>
+    <string name="department">Bölümünüz</string>
+    <string name="save">Kaydet</string>
+    <string name="birthday">Doğum Tarihiniz</string>
+    <string name="explore">Keşfet</string>
+    <string name="best_podcasts_in_your_region">Bölgendeki en iyi podcastler</string>
+    <string name="player_queue">Liste</string>
+    <string name="recommended_podcasts">Senin için önerilen podcastler</string>
+    <string name="recommended_episodes">Senin için önerilen bölümler</string>
+    <string name="please_wait">Lütfen bekleyiniz.</string>
+    <string name="now_playing">Şimdi Çalıyor</string>
+    <string name="paused">Duraklatıldı</string>
+    <string name="getuser_name">Ad Soyad</string>
+    <string name="e_mail">E-mail</string>
+    <string name="profile_birthday">Doğum Tarihi</string>
+    <string name="profile_favourite_category">En Çok Dinlediğin Kategori</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_placeholder">Search for Podcast, Episodes, Genres</string>
+    <string name="search_favorites_placeholder">Search for Favorites</string>
+    <string name="update_profie_details">Bilgilerimi Güncelle</string>
+    <string name="all_episodes">Tüm Bölümler</string>
+    <string name="account_details">Hesap Detayları</string>
+    <string name="recently_played">Son Dinlediklerim</string>
+    <string name="list_all_episodes">Tüm Bölümleri Listele</string>
+    <string name="recently_played_podcast">Son Dinlediğin Podcast</string>
+    <string name="recently_played_episode">Son Dinlediğin Bölüm</string>
+    <string name="listen_episode">Bölümü Dinle</string>
+    <string name="logout">ÇIKIŞ YAP</string>
+    <string name="recently_played_dummy_text">Sanırım buralarda yenisin… Hadi gel keşife çıkalım!</string>
+    <string name="favorites">Favoriler</string>
+    <string name="all_favorites_under_one_roof">Tüm favori podcastlerin tek bir çatı altında!</string>
+    <string name="my_favorites">Favorilerim</string>
+    <string name="userName">Kullanıcı Adınız</string>
+    <string name="rate_us">Bizi Değerlendir</string>
+    <string name="give_feedback">Geri Bildirimde Bulun</string>
+    <string name="no_favorites_yet">Henüz hiç favorin yok…</string>
+    <string name="feed">Akış</string>
+    <string name="verify_email">Doğrulama mailinin gelmesi biraz süre alabilir.</string>
+    <string name="verify_email_dialog">Doğrulama mailinin gönderildi.</string>
+    <string name="working_for_you">Bu sayfayı sana en iyi şekilde hazırlamak için çalışmalarımız devam ediyor. Bittiğinde seni haberdar edeceğiz!</string>
+    <string name="locale_feed_fragment">Yerel</string>
+    <string name="global_feed_fragment">Dünya</string>
+    <string name="feed_search_fragment">Ara</string>
+    <string name="share">Paylaş</string>
+    <string name="whats_going_on">Neler oluyor?</string>
+    <string name="send_verify_mail_again">E-posta doğrulamasının tekrar gönderilmesini ister misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="okey">Tamam</string>
+    <string name="no_more_new_episodes">Yeni bölüm bulunmamaktadır.</string>
+    <string name="you_are_in_first_episode">İlk bölümdesiniz.</string>
+    <string name="thanks_for_sharing_expreience">Thanks for sharing your experience with Podpocket Developers!</string>
+    <string name="episodes">Bölümler</string>
+    <string name="podcasts">Podcastler</string>
+    <string name="clear_all">Hepsini temizle</string>
+    <string name="details">Detaylar</string>
+    <string name="podcast_description">Podcast Açıklaması</string>
+    <string name="about_podcast">Hakkında</string>
+    <string name="country">Ülke :</string>
+    <string name="similar_podcasts">Benzer Podcastler</string>
+    <string-array name="feed_fragment_titles">
+        <item>@string/locale_feed_fragment</item>
+        <item>@string/global_feed_fragment</item>
+        <item>@string/feed_search_fragment</item>
+    </string-array>
+
+    <string-array name="podcast_titles">
+        <item>@string/episodes</item>
+        <item>@string/details</item>
+    </string-array>
 </resources>

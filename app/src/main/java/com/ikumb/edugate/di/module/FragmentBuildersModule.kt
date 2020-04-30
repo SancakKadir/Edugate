@@ -1,5 +1,6 @@
 package com.ikumb.edugate.di.module
 
+import com.ikumb.edugate.ui.dashboard.BlankFragment
 import com.ikumb.edugate.ui.dashboard.DashboardFragment
 import com.ikumb.edugate.ui.splash.SplashFragment
 import dagger.Module
@@ -16,4 +17,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeDashboardFragment(): DashboardFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeBlankFragment(): BlankFragment
 }
