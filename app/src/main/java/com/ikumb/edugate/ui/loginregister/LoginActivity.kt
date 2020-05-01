@@ -17,6 +17,7 @@ import com.ikumb.edugate.ui.after_register.AfterRegisterActivity
 import com.ikumb.edugate.ui.entry.EntryActivity
 import com.ikumb.edugate.ui.main.MainActivity
 import com.ikumb.edugate.utils.domain.toast
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity :
@@ -34,7 +35,6 @@ class LoginActivity :
 
         parseIntent()
         initObservers()
-
 
     }
 
@@ -60,6 +60,7 @@ class LoginActivity :
                     hideProgress()
             }
         )
+
 
         viewModel.registerSuccess.addOnPropertyChangedCallback(object :
             Observable.OnPropertyChangedCallback() {
@@ -141,6 +142,8 @@ class LoginActivity :
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
+
 
 
 }

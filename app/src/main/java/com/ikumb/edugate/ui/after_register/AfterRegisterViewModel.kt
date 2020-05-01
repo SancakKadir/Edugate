@@ -9,6 +9,7 @@ import com.ikumb.edugate.db.User
 import com.ikumb.edugate.utils.domain.logE
 import com.ikumb.edugate.utils.domain.logV
 import javax.inject.Inject
+import kotlin.random.Random
 
 class AfterRegisterViewModel @Inject internal constructor() : BaseViewModel() {
 
@@ -57,6 +58,21 @@ class AfterRegisterViewModel @Inject internal constructor() : BaseViewModel() {
         }
     }
 
+    fun AddLessonToFirebase(lessonid:String) {
 
+        val ref = FirebaseDatabase.getInstance().reference.child("Department")
+        val lesson = Lesson(
+            ((0..100).random()).toString(),
+             ((0..100).random()).toString()
+        )
+        ref.child(department.get().toString()).child(lessonid).child(mAuth.currentUser?.uid.toString()).setValue(lesson)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    logV("user save succes")
+                } else {
+                    logE(task.exception?.printStackTrace().toString())
+                }
+            }
+    }
 
 }

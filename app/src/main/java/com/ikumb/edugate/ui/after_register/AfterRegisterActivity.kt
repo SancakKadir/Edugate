@@ -47,6 +47,18 @@ class AfterRegisterActivity :
                     viewModel.saveSuccess.set(true)
                     hideProgress()
                     viewModel.AddUserToFirebase()
+                    if (viewModel.department.get().toString()=="matematik bilgisayar"){
+                        viewModel.AddLessonToFirebase("Analiz 1")
+                        viewModel.AddLessonToFirebase("Analitik Geometri")
+                        viewModel.AddLessonToFirebase("Soyut Matematik")
+                        viewModel.AddLessonToFirebase("Bilgisayar Bilimlerine Giriş")
+                    }
+                    if(viewModel.department.get().toString()=="mimarlık"){
+                        viewModel.AddLessonToFirebase("Mimari Tasarım")
+                        viewModel.AddLessonToFirebase("Temel Tasarım")
+                        viewModel.AddLessonToFirebase("Mimarlık için Matematik")
+                        viewModel.AddLessonToFirebase("Academic English for Architecture")
+                    }
                     val intent = Intent(this@AfterRegisterActivity, MainActivity::class.java)
                     runOnUiThread {
                         startActivity(intent)
