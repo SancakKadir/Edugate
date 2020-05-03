@@ -3,21 +3,19 @@ package com.ikumb.edugate.ui.loginregister
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.Intent.parseIntent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.databinding.Observable
+import androidx.lifecycle.Observer
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ikumb.edugate.R
 import com.ikumb.edugate.core.BaseActivity
 import com.ikumb.edugate.core.Constants
 import com.ikumb.edugate.databinding.ActivityLoginBinding
-import androidx.databinding.Observable
-import androidx.lifecycle.Observer
-import com.google.android.gms.tasks.Task
 import com.ikumb.edugate.ui.after_register.AfterRegisterActivity
-import com.ikumb.edugate.ui.entry.EntryActivity
 import com.ikumb.edugate.ui.main.MainActivity
-import com.ikumb.edugate.utils.domain.toast
-import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity :
@@ -80,11 +78,33 @@ class LoginActivity :
 
         })
 
-        viewModel.loginSuccess.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+        viewModel.loginSuccess.addOnPropertyChangedCallback(object :
+            Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                val intent = Intent(this@LoginActivity, AfterRegisterActivity::class.java)
-                startActivity(intent)
-                finish()
+
+                FirebaseDatabase.getInstance().getReference("Users")
+                    .child("${mAuth.currentUser?.uid}").child("name")
+                    .addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            if (p0.exists()) {
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                val intent =
+                                    Intent(this@LoginActivity, AfterRegisterActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+
+                    })
+
+
             }
         })
 
@@ -142,8 +162,6 @@ class LoginActivity :
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
-
 
 
 }

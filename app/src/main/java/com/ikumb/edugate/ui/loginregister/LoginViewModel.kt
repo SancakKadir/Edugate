@@ -1,8 +1,6 @@
 package com.ikumb.edugate.ui.loginregister
 
-import android.util.Log
 import android.util.Patterns
-import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
@@ -30,6 +28,8 @@ class LoginViewModel @Inject internal constructor() : BaseViewModel() {
     var buttonText: ObservableInt = ObservableInt(R.string.sign_in)
     var summaryText: ObservableInt = ObservableInt(R.string.already_register)
 
+
+    var Alreadyexists: ObservableField<Boolean> = ObservableField(false)
     var loginSuccess: ObservableField<Boolean> = ObservableField(false)
     var registerSuccess: ObservableField<Boolean> = ObservableField(false)
     var sendMailSuccess: ObservableField<Boolean> = ObservableField(false)
@@ -63,7 +63,9 @@ class LoginViewModel @Inject internal constructor() : BaseViewModel() {
     private fun getValidationMessages(): Boolean {
         var result = true
         var message = ""
-        if (userName.get().isNullOrEmpty() || Patterns.EMAIL_ADDRESS.matcher(userName.get()).matches().not()) {
+        if (userName.get().isNullOrEmpty() || Patterns.EMAIL_ADDRESS.matcher(userName.get())
+                .matches().not()
+        ) {
             result = false
             message = "Lütfen girilen e-posta adresinizi kontrol ediniz."
         } else if (password.get().isNullOrEmpty()) {
@@ -110,18 +112,32 @@ class LoginViewModel @Inject internal constructor() : BaseViewModel() {
     private fun loginClicked() {
         if (getValidationMessages()) {
             progressLiveData.postValue(true)
+
             mAuth.signInWithEmailAndPassword(
                 userName.get() ?: "",
                 password.get()
                     ?: ""
             ).addOnCompleteListener { task ->
 
-                loginSuccess.set(true)
-                progressLiveData.postValue(false)
-
                 if (task.isSuccessful && mAuth.currentUser?.isEmailVerified!!) {
                     verifySuccess.set(true)
 
+                    val usersRef =
+                        FirebaseDatabase.getInstance().getReference("Users")
+                            .child("${mAuth.currentUser?.uid}")
+
+                    usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            loginSuccess.set(true)
+                            progressLiveData.postValue(false)
+
+
+                        }
+                    })
                 } else if (task.isSuccessful && mAuth.currentUser?.isEmailVerified == false) {
                     progressLiveData.postValue(false)
                     verifySuccess.set(false)
@@ -131,8 +147,6 @@ class LoginViewModel @Inject internal constructor() : BaseViewModel() {
                 }
             }
         }
-
-
     }
 
 
