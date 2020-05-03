@@ -3,6 +3,7 @@ package com.ikumb.edugate.ui.after_register
 import androidx.databinding.ObservableField
 import com.google.firebase.database.FirebaseDatabase
 import com.ikumb.edugate.core.BaseViewModel
+import com.ikumb.edugate.db.ExamDate
 import com.ikumb.edugate.db.Lesson
 import com.ikumb.edugate.db.User
 import com.ikumb.edugate.utils.domain.logE
@@ -59,13 +60,29 @@ class AfterRegisterViewModel @Inject internal constructor() : BaseViewModel() {
     }
 
     fun AddLessonToFirebase(lessonid:String) {
-
         val ref = FirebaseDatabase.getInstance().reference.child("Department")
         val lesson = Lesson(
-            ((0..100).random()).toString(),
-             ((0..100).random()).toString()
+            "girilmedi",
+            "girilmedi"
         )
         ref.child(department.get().toString()).child(lessonid).child(mAuth.currentUser?.uid.toString()).setValue(lesson)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    logV("user save succes")
+                } else {
+                    logE(task.exception?.printStackTrace().toString())
+                }
+            }
+    }
+
+    fun AddExamDates(lessonid: String) {
+        val ref = FirebaseDatabase.getInstance().reference.child("Examdates")
+        val examdate = ExamDate(
+            "girilmedi",
+            "girilmedi"
+        )
+        ref.child(department.get().toString()).child(lessonid)
+            .child(mAuth.currentUser?.uid.toString()).setValue(examdate)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     logV("user save succes")

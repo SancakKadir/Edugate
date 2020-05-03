@@ -1,20 +1,18 @@
 package com.ikumb.edugate.ui.after_register
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.appcompat.app.AlertDialog
+import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.ikumb.edugate.R
 import com.ikumb.edugate.core.BaseActivity
 import com.ikumb.edugate.databinding.ActivityAfterRegisterBinding
 import com.ikumb.edugate.ui.main.MainActivity
-import com.ikumb.edugate.utils.domain.hide
-import com.ikumb.edugate.utils.domain.show
 import java.util.*
 
 class AfterRegisterActivity :
@@ -47,6 +45,36 @@ class AfterRegisterActivity :
                     viewModel.saveSuccess.set(true)
                     hideProgress()
                     viewModel.AddUserToFirebase()
+
+                    FirebaseDatabase.getInstance().getReference("Examdates")
+                        .child(viewModel.department.get().toString())
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError) {
+                            }
+
+                            override fun onDataChange(p0: DataSnapshot) {
+                                if (p0.exists()) {
+                                    Log.d("logcuk", "kardesim sınavlar var zaten ne istiyon")
+                                } else {
+                                    if (viewModel.department.get()
+                                            .toString() == "matematik bilgisayar"
+                                    ) {
+                                        viewModel.AddExamDates("Analiz 1")
+                                        viewModel.AddExamDates("Analitik Geometri")
+                                        viewModel.AddExamDates("Soyut Matematik")
+                                        viewModel.AddExamDates("Bilgisayar Bilimlerine Giriş")
+                                    }
+                                    if (viewModel.department.get().toString() == "mimarlık") {
+                                        viewModel.AddExamDates("Mimari Tasarım")
+                                        viewModel.AddExamDates("Temel Tasarım")
+                                        viewModel.AddExamDates("Mimarlık için Matematik")
+                                        viewModel.AddExamDates("Academic English for Architecture")
+                                    }
+                                }
+                            }
+
+                        })
+
                     if (viewModel.department.get().toString()=="matematik bilgisayar"){
                         viewModel.AddLessonToFirebase("Analiz 1")
                         viewModel.AddLessonToFirebase("Analitik Geometri")
