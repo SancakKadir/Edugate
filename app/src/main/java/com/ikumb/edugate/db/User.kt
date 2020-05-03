@@ -1,3 +1,9 @@
 package com.ikumb.edugate.db
 
-class User(val name:String,val surname:String,val birtday:String,val department:String)
+data class User(
+    var name: String? = "",
+    var surname: String? = "",
+    var birtday: String? = "",
+    var department: String? = "",
+    var isStudent: Boolean? = true
+)

@@ -21,7 +21,5 @@ class SplashFragment :
         mBinding.rootView.setOnClickListener {
             findNavController().navigate(R.id.action_splashFragment_to_blankFragment)
         }
-
     }
-
 }

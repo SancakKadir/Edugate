@@ -3,6 +3,7 @@ package com.ikumb.edugate.di.module
 import com.ikumb.edugate.ui.dashboard.BlankFragment
 import com.ikumb.edugate.ui.dashboard.DashboardFragment
 import com.ikumb.edugate.ui.splash.SplashFragment
+import com.ikumb.edugate.ui.students.StudentsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -20,4 +21,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeBlankFragment(): BlankFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeStudentFragment(): StudentsFragment
 }

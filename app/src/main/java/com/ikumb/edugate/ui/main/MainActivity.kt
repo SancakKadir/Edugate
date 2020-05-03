@@ -2,15 +2,19 @@ package com.ikumb.edugate.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ikumb.edugate.R
 import com.ikumb.edugate.core.BaseActivity
 import com.ikumb.edugate.databinding.ActivityMainBinding
-import com.ikumb.edugate.utils.domain.hide
+import com.ikumb.edugate.db.User
 import com.ikumb.edugate.utils.domain.show
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -49,6 +53,20 @@ class MainActivity :
                 else -> NavigationUI.onNavDestinationSelected(it, navController)
             }
         }
+
+        FirebaseDatabase.getInstance().reference.child("Users")
+            .child(FirebaseAuth.getInstance().uid ?: "")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val isStudent = p0.getValue(User::class.java)?.isStudent
+                    binding.bottomNavigation.menu.findItem(R.id.studentsFragment).isVisible =
+                        isStudent?.not() == true
+                }
+            })
 
         findNavController(R.id.container_fragment).addOnDestinationChangedListener { controller
                                                                                      , destination

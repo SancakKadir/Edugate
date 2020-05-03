@@ -1,6 +1,5 @@
 package com.ikumb.edugate.ui.after_register
 
-import android.icu.util.GregorianCalendar
 import androidx.databinding.ObservableField
 import com.google.firebase.database.FirebaseDatabase
 import com.ikumb.edugate.core.BaseViewModel
@@ -9,7 +8,6 @@ import com.ikumb.edugate.db.User
 import com.ikumb.edugate.utils.domain.logE
 import com.ikumb.edugate.utils.domain.logV
 import javax.inject.Inject
-import kotlin.random.Random
 
 class AfterRegisterViewModel @Inject internal constructor() : BaseViewModel() {
 
@@ -47,11 +45,13 @@ class AfterRegisterViewModel @Inject internal constructor() : BaseViewModel() {
             name.get().toString(),
             surname.get().toString(),
             userBirthDay.get().toString(),
-            department.get().toString()
+            department.get().toString(),
+            true
         )
         ref.child(mAuth.currentUser?.uid.toString()).setValue(user).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 logV("user save succes")
+
             } else {
                 logE(task.exception?.printStackTrace().toString())
             }

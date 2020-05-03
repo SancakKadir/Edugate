@@ -34,4 +34,5 @@ abstract class ActivityModule {
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     internal abstract fun AfterRegisterActivity(): AfterRegisterActivity
 
+
 }

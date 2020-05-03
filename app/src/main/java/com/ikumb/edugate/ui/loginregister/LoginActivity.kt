@@ -16,6 +16,8 @@ import com.ikumb.edugate.core.Constants
 import com.ikumb.edugate.databinding.ActivityLoginBinding
 import com.ikumb.edugate.ui.after_register.AfterRegisterActivity
 import com.ikumb.edugate.ui.main.MainActivity
+import com.jaychang.st.SimpleText
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity :
@@ -33,7 +35,7 @@ class LoginActivity :
 
         parseIntent()
         initObservers()
-
+        initAgreement()
     }
 
     private fun parseIntent() {
@@ -164,4 +166,33 @@ class LoginActivity :
     }
 
 
+    private fun initAgreement() {
+        val simpleText = SimpleText.from(getString(R.string.agreement))
+            .first(getString(R.string.agreement_part_first))
+            .textColor(R.color.colorPrettyOrange)
+            .pressedTextColor(R.color.colorPrettyOrange)
+            .onClick(textViewAgreement) { _, _, _ ->
+                showAgreementDialog()
+            }
+            .first(getString(R.string.agreement_part_second))
+            .textColor(R.color.colorPrettyOrange)
+            .pressedTextColor(R.color.colorPrettyOrange)
+            .onClick(textViewAgreement) { _, _, _ ->
+                showAgreementDialog()
+            }
+            .first(getString(R.string.agreement_part_third))
+            .textColor(R.color.colorPrettyPurple)
+            .pressedTextColor(R.color.colorPrettyPurple)
+            .onClick(textViewAgreement) { _, _, _ ->
+                showAgreementDialog()
+            }
+            .first(getString(R.string.agreement_part_fourth))
+            .textColor(R.color.colorPrettyOrange)
+            .pressedTextColor(R.color.colorPrettyOrange)
+            .onClick(textViewAgreement) { _, _, _ ->
+                showAgreementDialog()
+            }
+
+        textViewAgreement.text = simpleText
+    }
 }

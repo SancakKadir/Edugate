@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
         android:id="@+id/dashboardFragment"
@@ -22,4 +22,8 @@
         android:id="@+id/blankFragment"
         android:name="com.ikumb.edugate.ui.dashboard.BlankFragment"
         android:label="BlankFragment" />
+    <fragment
+        android:id="@+id/studentsFragment"
+        android:name="com.ikumb.edugate.ui.students.StudentsFragment"
+        android:label="StudentsFragment" />
 </navigation>

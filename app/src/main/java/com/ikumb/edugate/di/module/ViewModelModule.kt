@@ -11,6 +11,7 @@ import com.ikumb.edugate.ui.entry.EntryViewModel
 import com.ikumb.edugate.ui.loginregister.LoginViewModel
 import com.ikumb.edugate.ui.main.MainActivityViewModel
 import com.ikumb.edugate.ui.splash.SplashFragmentViewModel
+import com.ikumb.edugate.ui.students.StudentsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -57,8 +58,10 @@ abstract class ViewModelModule {
     abstract fun providerAfterRegisterViewModel(afterRegisterViewModel: AfterRegisterViewModel): ViewModel
 
 
-
-
+    @IntoMap
+    @Binds
+    @ViewModelKey(StudentsViewModel::class)
+    abstract fun providerStudentsViewModel(studentsViewModel: StudentsViewModel): ViewModel
 
 
 }
