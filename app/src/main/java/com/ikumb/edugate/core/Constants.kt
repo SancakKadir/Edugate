@@ -4,10 +4,6 @@ object Constants {
 
     object IntentName {
         const val LOGIN_ACTIVITY_TYPE = "login_activity_type"
-        const val PLAYER_ACTIVITY_ALL_IDS = "allPodIds"
-        const val PLAYER_ACTIVITY_POSITION = "position"
-        const val PLAYER_ACTIVITY_ITEM = "pod"
-        const val PODCAST_ITEM = "podcast"
     }
 
 
