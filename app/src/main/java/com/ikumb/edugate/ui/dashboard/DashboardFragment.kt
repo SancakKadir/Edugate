@@ -34,6 +34,9 @@ class DashboardFragment :
             mBinding.textViewLessonVisaNote3.text = it.soyutmatematik
             mBinding.textViewLessonVisaDate3.text = it.soyutmatematikdate
 
+            mBinding.textViewLessonVisaNote4.text = it.türkce
+            mBinding.textViewLessonVisaDate4.text = it.türkcedate
+
 
             Log.d("data", it.toString())
         }
@@ -50,6 +53,9 @@ class DashboardFragment :
 
             mBinding.textViewLessonFinalNote3.text = it.soyutmatematik
             mBinding.textViewLessonFinalDate3.text = it.soyutmatematikdate
+
+            mBinding.textViewLessonFinalNote4.text = it.türkce
+            mBinding.textViewLessonFinalDate4.text = it.türkcedate
             Log.d("data", it.toString())
         }
 
